@@ -1,0 +1,92 @@
+fichier a cree:
+    -serveur.c
+    -client.c
+    jeux de dame :  
+        -dame.h ---> serveur
+        -affichePlateau.h ---> clients
+
+---------------------TODO---------------------
+-serveur avec plusieur thread
+-client
+-affichePlateau.h
+-jeux de dame
+
+------------------CONNEXION--------------------
+
+Le serveur envois ça au client :
+    1 Creation du compte
+    2 Connexion
+    3 Compte Invité
+\\CURSEUR//
+
+
+1 Creation du compte
+    fonction création(){
+        Pseudo :    'Le client rentre le pseudo'
+        Mot de passe :  'Le client rentre le mot de passe'
+        Vérification de la dispo du pseudo par le serveur dans le fichier (CSV) des comptes
+    }
+
+    Si c'est bon : 
+        On rentre le pseudo et le mdp dans le fichier + On envois au client : Compte créer. Vous etes connecté sur le compte 'Pseudo';--> lancer la fonction connexion(user);
+    Sinon :
+        "Le pseudo est déjà utilisé, veuillez en choisir un autre"
+        création();
+
+
+    fonction verifUser(User user){
+        foreach(User p : UserCSV){
+            if(p.pseudo == user.pseudo){
+                return 0;    //Pseudo existant
+            }
+        }
+        return 1; //Pseudo non existant
+    }
+    if(verifUser(user)){
+        création du compte dans le csv
+    }
+
+
+2 Connexion
+
+    Pseudo : 'Le client rentre le pseudo'
+    Mot de passe :'Le client rentre le mot de passe'
+    connexion(User user){}
+
+3 Compte Invité
+    Le serveur reçois le User{pseudo: Invite mdp : Invite} (User par default)
+    Connexion(User user){}
+Finir le case 2 du client
+-----------------------2EME PHASE--------------------
+
+
+apres le switch dans le client recv() //Instruction suivantes
+
+1 - Rejoindre une partie --> Valentin
+2 - Créer une partie     --> Mohammed
+3 - Regarder une partie  --> Mohammed
+4 - Quitter              --> Valentin
+
+    1 - Rejoindre une partie :
+        Affiche toutes les parties en cours.
+        Le client choisis quelle partie il veux.
+        Ajoute le client à la partie et lance la partie
+        Supprime la partie de la liste des parties dispo. L'ajoute dans la liste des parties en cours.
+
+    2 - Creer une partie :
+        Creer la partie
+        L'ajouter à la liste des parties
+        Attend qu'un joueur rejoigne la partie : (Affiche "En attente d'un joueur" sur l'écran)
+
+    3 - Regarder une partie : 
+        Affiche la liste des parties en cours. 
+        Le client choisis la partie qu'il souhaite regarder
+        Affiche le plateau 
+        A chaque action d'un joueur, actualise le plateau
+
+structure partie :
+    - Tableau de 2 joueurs
+    - Un tableau de Spectateur (max 5)
+    - ID partie = position de la partie dans le tableau
+
+--------------------TO BE CONTINUE-------------------
